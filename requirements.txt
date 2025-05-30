@@ -1,0 +1,68 @@
+# Operating Systems 2024.2 - AI-Powered CPU Scheduler Project
+# Complete dependencies for all steps (Step 1-4)
+
+# ================================
+# Step 1: Data Collection & System Monitoring
+# ================================
+psutil>=5.9.0              # System and process monitoring
+pandas>=1.5.0              # Data manipulation and analysis
+numpy>=1.21.0              # Numerical computing
+
+# ================================
+# Step 2: Baseline Machine Learning
+# ================================
+scikit-learn>=1.1.0        # Machine learning algorithms
+xgboost>=1.6.0             # Gradient boosting framework
+lightgbm>=3.3.0            # Alternative gradient boosting (optional)
+imbalanced-learn>=0.9.0    # Handling imbalanced datasets (SMOTE)
+onnx>=1.12.0               # Model serialization format
+onnxruntime>=1.12.0        # ONNX model inference
+
+# ================================
+# Step 3: RL Environment Simulation
+# ================================
+gym==0.26.2                # OpenAI Gym environment framework (compatible version)
+
+# ================================
+# Step 4: Reinforcement Learning Training
+# ================================
+stable-baselines3==1.8.0   # RL algorithms library (compatible with gym 0.26.2)
+torch>=1.12.0              # PyTorch deep learning framework
+tensorboard>=2.8.0         # Training visualization and monitoring
+
+# ================================
+# Data Visualization & Analysis
+# ================================
+matplotlib>=3.5.0          # Plotting and visualization
+seaborn>=0.11.0            # Statistical data visualization
+plotly>=5.10.0             # Interactive plots (optional)
+
+# ================================
+# Development & Utilities
+# ================================
+jupyter>=1.0.0             # Jupyter notebooks for analysis (optional)
+tqdm>=4.64.0               # Progress bars
+cloudpickle>=2.0.0         # Enhanced pickling for ML models
+
+# ================================
+# System Stress Testing (Step 1)
+# ================================
+# Note: stress-ng is a system tool, install separately:
+# Ubuntu/Debian: sudo apt install stress-ng
+# macOS: brew install stress-ng
+# Windows: Use alternative stress testing tools
+
+# ================================
+# Optional Dependencies for Enhanced Features
+# ================================
+# onnx2torch>=1.5.0        # Convert ONNX to PyTorch (if needed)
+# wandb>=0.13.0             # Experiment tracking (alternative to tensorboard)
+# optuna>=3.0.0             # Hyperparameter optimization
+# ray[rllib]>=2.0.0         # Distributed RL training (advanced)
+
+# ================================
+# Version Compatibility Notes
+# ================================
+# This project uses:
+# - gym==0.26.2 (older version for compatibility)
+# - stable-baselines3==1.8.0 (compatible with gym 0.26.2)
