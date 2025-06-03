@@ -88,37 +88,34 @@ def main():
     
     # Setup callbacks
     print("⚙️ Setting up training callbacks...")
-    
-    # Evaluation callback - evaluates the agent periodically
+      # Evaluation callback - evaluates the agent periodically
     eval_callback = EvalCallback(
         eval_env,
         best_model_save_path="./best_model/",
         log_path="./logs/",
-        eval_freq=5000,      # Evaluate every 5000 steps
+        eval_freq=10000,     # Increased from 5000 to 10000 for longer training
         deterministic=True,
         render=False,
         verbose=1
     )
-    
-    # Checkpoint callback - saves model periodically
+      # Checkpoint callback - saves model periodically
     checkpoint_callback = CheckpointCallback(
-        save_freq=10000,     # Save every 10000 steps
+        save_freq=25000,     # Increased from 10000 to 25000 for longer training
         save_path="./models/",
         name_prefix="ppo_cpu_scheduler"
     )
     
     callbacks = [eval_callback, checkpoint_callback]
-    
-    # Train the agent
+      # Train the agent
     print("🏋️ Starting training...")
-    print(f"📈 Training for 100,000 timesteps...")
+    print(f"📈 Training for 500,000 timesteps...")
     print("💡 You can monitor progress with TensorBoard:")
     print("   tensorboard --logdir ./tensorboard_logs/")
     print("-" * 60)
     
     try:
         model.learn(
-            total_timesteps=100000,
+            total_timesteps=500000,  # Increased from 100,000 to 500,000
             callback=callbacks,
             tb_log_name="ppo_cpu_scheduler"
         )
