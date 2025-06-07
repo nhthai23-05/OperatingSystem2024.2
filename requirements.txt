@@ -21,18 +21,19 @@ onnxruntime>=1.12.0        # ONNX model inference
 # ================================
 # Step 3: RL Environment Simulation
 # ================================
-gym==0.26.2                # OpenAI Gym environment framework (compatible version)
+gymnasium>=0.29.1          # Modern OpenAI Gym environment framework
 
 # ================================
 # Step 4: Reinforcement Learning Training
 # ================================
-stable-baselines3==1.8.0   # RL algorithms library (compatible with gym 0.26.2)
+stable-baselines3>=2.0.0   # RL algorithms library (compatible with gymnasium)
 torch>=1.12.0              # PyTorch deep learning framework
 tensorboard>=2.8.0         # Training visualization and monitoring
 
 # ================================
-# Data Visualization & Analysis
+# Demo Interface & Visualization
 # ================================
+gradio>=4.0.0              # Web interface for interactive demo
 matplotlib>=3.5.0          # Plotting and visualization
 seaborn>=0.11.0            # Statistical data visualization
 plotly>=5.10.0             # Interactive plots (optional)
@@ -43,6 +44,8 @@ plotly>=5.10.0             # Interactive plots (optional)
 jupyter>=1.0.0             # Jupyter notebooks for analysis (optional)
 tqdm>=4.64.0               # Progress bars
 cloudpickle>=2.0.0         # Enhanced pickling for ML models
+argparse                   # Command line argument parsing (built-in)
+subprocess                 # Process management (built-in)
 
 # ================================
 # System Stress Testing (Step 1)
@@ -59,10 +62,13 @@ cloudpickle>=2.0.0         # Enhanced pickling for ML models
 # wandb>=0.13.0             # Experiment tracking (alternative to tensorboard)
 # optuna>=3.0.0             # Hyperparameter optimization
 # ray[rllib]>=2.0.0         # Distributed RL training (advanced)
+# fastapi>=0.95.0           # Alternative web framework (if replacing Gradio)
+# uvicorn>=0.18.0           # ASGI server for FastAPI
 
 # ================================
 # Version Compatibility Notes
 # ================================
 # This project uses:
-# - gym==0.26.2 (older version for compatibility)
-# - stable-baselines3==1.8.0 (compatible with gym 0.26.2)
+# - gymnasium>=0.29.1 (modern version of OpenAI Gym)
+# - stable-baselines3>=2.0.0 (compatible with gymnasium)
+# - gradio>=4.0.0 (for interactive web demo)
