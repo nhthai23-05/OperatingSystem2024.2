@@ -1,4 +1,4 @@
 setup/
-Step2/label_encoder.pkl
-Step2/sgb_os_sched.onnx
 Step3/OSpro/__pycache__/
+demo/__pycache__
+demo/demo/

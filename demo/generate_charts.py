@@ -36,12 +36,13 @@ def run_all_policies_and_generate_charts(workload):
                 total_reward = 0
                 completion_rate = 0
                 total_steps = 0
-                
                 for line in lines:
                     if 'Total Reward:' in line:
                         total_reward = float(line.split(':')[1].strip())
-                    elif 'Completion Rate:' in line:
-                        completion_rate = float(line.split(':')[1].strip().replace('%', ''))
+                    elif 'Processes Completed:' in line:
+                        # Parse "Processes Completed: 1/5 (20.0%)" format
+                        percentage_part = line.split('(')[1].split(')')[0].replace('%', '')
+                        completion_rate = float(percentage_part)
                     elif 'Total Steps:' in line:
                         total_steps = int(line.split(':')[1].strip())
                 
@@ -82,7 +83,7 @@ def run_all_policies_and_generate_charts(workload):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate comparison charts for CPU scheduling algorithms")
-    parser.add_argument("--workload", choices=["cpu", "io", "mixed"], default="mixed",
+    parser.add_argument("--workload", choices=["cpu", "io", "mixed", "idle", "ram-heavy", "mixed-heavy"], default="mixed",
                         help="Workload type to test (default: mixed)")
     
     args = parser.parse_args()

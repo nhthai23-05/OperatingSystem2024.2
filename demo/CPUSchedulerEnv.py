@@ -10,10 +10,11 @@ class CPUSchedulerEnv(gym.Env):
     All values normalized to [0, 1] for consistency.
     """
 
-    def __init__(self, num_processes=5, max_steps=50):
+    def __init__(self, num_processes=5, max_steps=50, workload_type="mixed"):
         super(CPUSchedulerEnv, self).__init__()
         self.num_processes = num_processes
         self.max_steps = max_steps
+        self.workload_type = workload_type
 
         # Normalized observation space: all values between 0 and 1
         self.observation_space = spaces.Box(
@@ -30,13 +31,49 @@ class CPUSchedulerEnv(gym.Env):
         np.random.seed(seed)
 
     def _generate_state(self):
-        cpu = np.random.uniform(0.2, 0.8, size=self.num_processes)      # 0-1 normalized
-        mem = np.random.uniform(0.2, 0.8, size=self.num_processes)
+        """Generate workload-specific process distributions."""
+        
+        if self.workload_type == "cpu":
+            # CPU-intensive workload: high CPU, low I/O
+            cpu = np.random.uniform(0.6, 0.9, size=self.num_processes)
+            mem = np.random.uniform(0.2, 0.6, size=self.num_processes)
+            io = np.random.uniform(0.0, 0.2, size=self.num_processes)
+            
+        elif self.workload_type == "io":
+            # I/O-intensive workload: low CPU, high I/O
+            cpu = np.random.uniform(0.1, 0.4, size=self.num_processes)
+            mem = np.random.uniform(0.2, 0.6, size=self.num_processes)
+            io = np.random.uniform(0.4, 0.8, size=self.num_processes)
+            
+        elif self.workload_type == "idle":
+            # Idle workload: low CPU, low memory, low I/O
+            cpu = np.random.uniform(0.0, 0.3, size=self.num_processes)
+            mem = np.random.uniform(0.1, 0.4, size=self.num_processes)
+            io = np.random.uniform(0.0, 0.2, size=self.num_processes)
+            
+        elif self.workload_type == "ram-heavy":
+            # Memory-intensive workload: high memory usage
+            cpu = np.random.uniform(0.3, 0.6, size=self.num_processes)
+            mem = np.random.uniform(0.6, 0.9, size=self.num_processes)
+            io = np.random.uniform(0.1, 0.4, size=self.num_processes)
+            
+        elif self.workload_type == "mixed-heavy":
+            # Heavy mixed workload: high resource usage across all metrics
+            cpu = np.random.uniform(0.5, 0.9, size=self.num_processes)
+            mem = np.random.uniform(0.5, 0.9, size=self.num_processes)
+            io = np.random.uniform(0.3, 0.7, size=self.num_processes)
+            
+        else:  # "mixed" or default
+            # Mixed workload: balanced distribution (original training data)
+            cpu = np.random.uniform(0.2, 0.8, size=self.num_processes)
+            mem = np.random.uniform(0.2, 0.8, size=self.num_processes)
+            io = np.random.uniform(0, 0.5, size=self.num_processes)
+        
+        # Common attributes for all workload types
         prio = np.random.choice([0.0, 0.5, 1.0], size=self.num_processes)
-        io = np.random.uniform(0, 0.5, size=self.num_processes)         # 0-1
-        ctx = np.random.uniform(0, 0.2, size=self.num_processes)        # normalized
+        ctx = np.random.uniform(0, 0.2, size=self.num_processes)
         is_running = np.zeros(self.num_processes)
-        remaining_time = np.random.randint(10, 51, size=self.num_processes) / 50.0  # normalized
+        remaining_time = np.random.randint(10, 51, size=self.num_processes) / 50.0
 
         return np.vstack([cpu, mem, prio, io, ctx, is_running, remaining_time]).T
 

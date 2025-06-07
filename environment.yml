@@ -1,0 +1,18 @@
+name: os_rl_ppo
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      # lõi khoa học – tất cả đều build source để bám NumPy 2
+      - numpy==2.0.0
+      - pandas==2.2.0               # pandas ≥2 hỗ trợ NumPy 2
+      - matplotlib==3.8.2           # ≥3.8 chính thức hỗ trợ NumPy 2
+      - "matplotlib==3.8.2 --no-binary :all:"   # ép build lại nếu vẫn lỗi
+      - gymnasium==0.29.1           # thay gym cổ
+      - farama-notifications>=0.0.4 # dependency của gymnasium
+      - torch==2.2.0                # build sẵn với NumPy 2
+      - stable-baselines3==2.2.1
+      # nếu còn dùng XGBoost-ONNX:
+      # - onnxruntime==1.16.3

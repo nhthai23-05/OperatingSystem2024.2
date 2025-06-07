@@ -1,0 +1,59 @@
+
+AI-POWERED CPU SCHEDULER COMPARISON REPORT
+============================================================
+
+WORKLOAD: MIXED
+Analysis Date: 2025-06-07 11:11:22
+
+TOP PERFORMERS:
+   Best Total Reward: PPO (89.312)
+   Best Completion Rate: FIFO (40.0%)
+
+DETAILED RESULTS:
+
+   TRADITIONAL - FIFO:
+      • Total Reward: 33.724
+      • Avg Reward/Step: 0.674
+      • Completion Rate: 40.0%
+      • Total Steps: 50
+
+   TRADITIONAL - RR:
+      • Total Reward: 37.027
+      • Avg Reward/Step: 0.741
+      • Completion Rate: 20.0%
+      • Total Steps: 50
+
+   TRADITIONAL - SJF:
+      • Total Reward: 54.578
+      • Avg Reward/Step: 1.092
+      • Completion Rate: 40.0%
+      • Total Steps: 50
+
+   AI MODEL - XGB:
+      • Total Reward: 87.532
+      • Avg Reward/Step: 1.751
+      • Completion Rate: 20.0%
+      • Total Steps: 50
+
+   AI MODEL - PPO:
+      • Total Reward: 89.312
+      • Avg Reward/Step: 1.786
+      • Completion Rate: 20.0%
+      • Total Steps: 50
+
+AI MODEL ADVANTAGES:
+   • Average AI Reward: 88.422
+   • Average Traditional Reward: 41.776
+   • AI Performance Improvement: +111.7%
+   
+CONCLUSION:
+   AI-powered scheduling shows significant improvement 
+   over traditional rule-based algorithms for mixed workloads.
+
+KEY INSIGHTS:
+   • XGBoost: Machine learning approach optimized on historical data
+   • PPO: Reinforcement learning agent that learned through trial and error
+   • Traditional algorithms follow fixed rules without adaptation
+   
+RECOMMENDATION:
+   Use AI models for better performance
